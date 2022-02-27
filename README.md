@@ -16,11 +16,17 @@ docker build --no-cache -t nrc .
 docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc exampledata/a.vcf.gz exampledata/b.vcf.gz
 ```
 
- Running with `-v $(pwd):$(pwd) -w $(pwd)` assumes vcf1 and vcf2 live in the current working directory. Alternatively, the default workdir in the container is `/data`, so you could mount a path to your data to `/data` and run as such: 
- 
- ```
- docker run --rm -v /path/to/host/nrc/exampledata:/data nrc /data/a.vcf.gz /data/b.vcf.gz
- ```
+Running with `-v $(pwd):$(pwd) -w $(pwd)` assumes vcf1 and vcf2 live in the current working directory. Alternatively, the default workdir in the container is `/data`, so you could mount a path to your data to `/data` and run as such: 
+
+```sh
+docker run --rm -v /path/to/host/nrc/exampledata:/data nrc /data/a.vcf.gz /data/b.vcf.gz
+```
+
+Example data from this repo is copied to the container in `/exampledata`. To debug or experiment, jump into the container interactively with:
+
+```sh
+docker run --rm -it --entrypoint /bin/ash -w /exampledata nrc
+```
 
 
 ### Result
