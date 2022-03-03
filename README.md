@@ -12,8 +12,32 @@ docker build --no-cache -t nrc .
 
 ## Usage
 
+```
+Usage: nrc.sh [-s sample] [-T targets.vcf.gz] <1.vcf.gz> <2.vcf.gz>
+```
+
+Example:
+
 ```sh
 docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc exampledata/a.vcf.gz exampledata/b.vcf.gz
+```
+
+```
+rrrr    rrra    rraa    rarr    rara    raaa    aarr    aara    aaaa    xrr     xra    xaa      x       m       xm      total   nrd     nrc     rr      ra      aa      p_rrra p_rraa   p_rarr  p_raaa  p_aarr  p_aara
+21      1       2       3       17      4       5       6       13      3       7      11       21      30      51      72      0.412   0.588   24      24      24      0.0417 0.0833   0.125   0.167   0.208   0.25
+```
+
+By default with no options, nrc is using bcftools to compare all samples against all other samples. If you have two VCFs each with one sample (the same sample), this will work as written. If you have two multisample VCFs, you must specify the name of the sample from both VCFs you want to compare, using the `-s` argument, which is passed to `bcftools stats -s/--sample`. E.g.:
+
+```sh
+docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc -s sample1 exampledata/a.vcf.gz exampledata/b.vcf.gz
+```
+
+Additionally, the `-T` argument can accept a site VCF or TSV which is further passed to `bcftools stats -T/--targets-file`, limiting the comparison only to these targets. This is useful to restrict analysis to, for example, sites that have at least X% minor allele frequency from GnomAD, given that filtered site VCF. Example usage:
+
+
+```sh
+docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc -s sample1 -T sites.vcf.gz exampledata/a.vcf.gz exampledata/b.vcf.gz
 ```
 
 Running with `-v $(pwd):$(pwd) -w $(pwd)` assumes vcf1 and vcf2 live in the current working directory. Alternatively, the default workdir in the container is `/data`, so you could mount a path to your data to `/data` and run as such: 
@@ -28,13 +52,6 @@ Example data from this repo is copied to the container in `/exampledata`. To deb
 docker run --rm -it --entrypoint /bin/ash -w /exampledata nrc
 ```
 
-
-### Result
-
-```
-rrrr    rrra    rraa    rarr    rara    raaa    aarr    aara    aaaa    xrr     xra    xaa      x       m       xm      total   nrd     nrc     rr      ra      aa      p_rrra p_rraa   p_rarr  p_raaa  p_aarr  p_aara
-21      1       2       3       17      4       5       6       13      3       7      11       21      30      51      72      0.412   0.588   24      24      24      0.0417 0.0833   0.125   0.167   0.208   0.25
-```
 
 ### Details
 
