@@ -1,8 +1,8 @@
-ARG VERSION="1.9"
+ARG VERSION="1.15"
 
 FROM alpine:3.15
 ARG VERSION
-RUN apk update && apk add --no-cache gcc make libc-dev ncurses-dev zlib-dev xz-dev bzip2-dev
+RUN apk update && apk add --no-cache gcc make libc-dev ncurses-dev zlib-dev xz-dev bzip2-dev curl-dev
 RUN wget -q https://github.com/samtools/bcftools/releases/download/${VERSION}/bcftools-${VERSION}.tar.bz2 && \
     tar -xjf bcftools-${VERSION}.tar.bz2 && \
     cd bcftools-${VERSION} && \
