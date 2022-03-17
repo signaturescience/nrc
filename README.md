@@ -2,12 +2,21 @@
 
 Please cite: **fixme**.
 
-## Build:
+## Build
+
+Cloning this repo and building locally:
 
 ```sh
 git clone git@github.com:signaturescience/nrc.git
 cd nrc
 docker build --no-cache -t nrc .
+```
+
+Or pull directly from the [GitHub Container Registry](https://github.com/signaturescience/nrc/pkgs/container/nrc): 
+
+```sh
+docker pull ghcr.io/signaturescience/nrc
+docker tag ghcr.io/signaturescience/nrc nrc
 ```
 
 ## Usage
