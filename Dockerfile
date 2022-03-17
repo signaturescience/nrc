@@ -13,6 +13,7 @@ FROM alpine:3.15
 RUN apk update && apk add xz-dev bzip2-dev bash R
 COPY --from=0 /usr/local/bin/bcftools /usr/local/bin/bcftools
 ADD src /src
+ADD exampledata /exampledata
 RUN chmod -R 777 /src
 ENV PATH="/src:${PATH}"
 
