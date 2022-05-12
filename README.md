@@ -1,6 +1,6 @@
 # Non-reference concordance
 
-Please cite: **fixme**.
+Please cite: Nagraj, V. P., Scholz, M., Jessa, S., Ge, J., Woerner, A. E., Huang, M., Budowle, B., & Turner, S. D. (2022). vcferr: Development, Validation, and Application of a SNP Genotyping Error Simulation Framework. _bioRxiv_ 2022.03.28.485853; doi: https://doi.org/10.1101/2022.03.28.485853.
 
 ## Build
 
