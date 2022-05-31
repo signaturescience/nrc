@@ -22,7 +22,7 @@ docker tag ghcr.io/signaturescience/nrc nrc
 ## Usage
 
 ```
-Usage: nrc.sh [-s sample] [-T targets.vcf.gz] <1.vcf.gz> <2.vcf.gz>
+Usage: docker run nrc [-s sample] [-T targets.vcf.gz] <1.vcf.gz> <2.vcf.gz>
 ```
 
 Example:
