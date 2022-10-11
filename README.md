@@ -1,6 +1,7 @@
 # Non-reference concordance
 
-Please cite: Nagraj, V. P., Scholz, M., Jessa, S., Ge, J., Woerner, A. E., Huang, M., Budowle, B., & Turner, S. D. (2022). vcferr: Development, Validation, and Application of a SNP Genotyping Error Simulation Framework. _bioRxiv_ 2022.03.28.485853; doi: https://doi.org/10.1101/2022.03.28.485853.
+Nagraj, V. P., Scholz, M., Jessa, S., Ge, J., Woerner, A. E., Huang, M., Budowle, B., & Turner, S. D. (2022). vcferr: Development, validation, and application of a single nucleotide polymorphism genotyping error simulation framework. _F1000Research_, 11, 775. https://doi.org/10.12688/f1000research.122840.1
+
 
 ## Build
 
@@ -32,8 +33,8 @@ docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc exampledata/a.vcf.gz exampledata/
 ```
 
 ```
-rrrr    rrra    rraa    rarr    rara    raaa    aarr    aara    aaaa    xrr     xra    xaa      x       m       xm      total   nrd     nrc     rr      ra      aa      p_rrra p_rraa   p_rarr  p_raaa  p_aarr  p_aara
-21      1       2       3       17      4       5       6       13      3       7      11       21      30      51      72      0.412   0.588   24      24      24      0.0417 0.0833   0.125   0.167   0.208   0.25
+rrrr	rrra	rraa	rarr	rara	raaa	aarr	aara	aaaa	xrr	xra	xaa	x	m	mm	xm	total	nrd	nrc	disc	conc	rr	ra	aa	p_rrra	p_rraa	p_rarr	p_raaa	p_aarr	p_aara
+21	1	2	3	17	4	5	6	13	3	7	11	21	30	51	51	72	0.412	0.588	0.292	0.708	24	24	24	0.0417	0.0833	0.125	0.167	0.208	0.25
 ```
 
 By default with no options, nrc is using bcftools to compare all samples against all other samples. If you have two VCFs each with one sample (the same sample), this will work as written. If you have two multisample VCFs, you must specify the name of the sample from both VCFs you want to compare, using the `-s` argument, which is passed to `bcftools stats -s/--sample`. E.g.:
@@ -64,7 +65,7 @@ docker run --rm -it --entrypoint /bin/ash -w /exampledata nrc
 
 ### Details
 
-Nonreference concordance is calculated as `NRC = 1 - (xRR + xRA + xAA) / (xRR + xRA + xAA + mRA + mAA)`. xRR, xRA, and xAA are the counts of the mismatches for the homozygous reference, heterozygous and homozygous alternative genotypes, while mRA and mAA are the counts of the matches at the heterozygous and homozygous alternative genotypes.
+Nonreference concordance (`nrc` in the output) is calculated as $\text{NRC} = 1 - (x_{RR} + x_{RA} + x_{AA}) / (x_{RR} + x_{RA} + x_{AA} + m_{RA} + m_{AA})$. $x_{RR}$, $x_{RA}$, and $x_{AA}$ are the counts of the mismatches for the homozygous reference, heterozygous and homozygous alternative genotypes, while $m_{RA}$ and $m_{AA}$ are the counts of the matches at the heterozygous and homozygous alternative genotypes. Discordance and concordance (`disc` and `conc` in the output, respectively) are calculated conventionally, also using the number of homozygous reference matches $m_{RR}$, which are omitted from the NRC calculation.
 
 The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.github.io/bcftools/bcftools.html#stats) followed by [post-processing in R](src/nrc.R) to pull out the relevant info.
 
@@ -85,10 +86,13 @@ The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.g
 |xaa    | 11 | Count of AA mismatches          |
 |x      | 21 | xrr + xra + xaa          |
 |m      | 30 | mra + maa          |
+|mm     | 51 | mra + maa + rrrr         |
 |xm     | 51 | x + m          |
 |total  | 72 | x + m + mrr          |
 |nrd    |  0.4120| Nonreference discordance (1-NRC)         |
 |nrc    |  0.5880| Nonreference concordance (1-NRD)          |
+|disc    |  0.292| Overall discordance (counting RRRR)         |
+|conc    |  0.708| Overall concordance (counting RRRR)         |
 |rr     | 24| Total count of RR homozygotes          |
 |ra     | 24| Total count of RA heterozygotes          |
 |aa     | 24| Total count of AA homozygotes          |

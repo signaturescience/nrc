@@ -7,10 +7,12 @@ x=x[c(3,4,5,8,9,10,13,14,15)]
 names(x)=c("rrrr", "rrra", "rraa", "rarr", "rara", "raaa", "aarr", "aara", "aaaa")
 x |> 
 transform(xrr=rrra+rraa, xra=rarr+raaa, xaa=aarr+aara) |>
-transform(x=xrr+xra+xaa, m=rara+aaaa) |>
+transform(x=xrr+xra+xaa, m=rara+aaaa, mm=rrrr+rara+aaaa) |>
 transform(xm=x+m, total=x+m+rrrr) |> 
 transform(nrd=signif(x/xm, 3)) |>
 transform(nrc=signif(1-nrd, 3)) |> 
+transform(disc=signif(x/total, 3)) |>
+transform(conc=signif(1-disc, 3)) |> 
 transform(rr=rrrr+rrra+rraa, ra=rarr+rara+raaa, aa=aarr+aara+aaaa) |>
 transform(p_rrra=ifelse(rr==0, 0, signif((rrra)/rr, 3))) |>
 transform(p_rraa=ifelse(rr==0, 0, signif((rraa)/rr, 3))) |>
