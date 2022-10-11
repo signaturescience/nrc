@@ -65,7 +65,7 @@ docker run --rm -it --entrypoint /bin/ash -w /exampledata nrc
 
 ### Details
 
-Nonreference concordance is calculated as `NRC = 1 - (xRR + xRA + xAA) / (xRR + xRA + xAA + mRA + mAA)`. xRR, xRA, and xAA are the counts of the mismatches for the homozygous reference, heterozygous and homozygous alternative genotypes, while mRA and mAA are the counts of the matches at the heterozygous and homozygous alternative genotypes.
+Nonreference concordance (`nrc` in the output) is calculated as $\text{NRC} = 1 - (x_{RR} + x_{RA} + x_{AA}) / (x_{RR} + x_{RA} + x_{AA} + m_{RA} + m_{AA})$. $x_{RR}$, $x_{RA}$, and $x_{AA}$ are the counts of the mismatches for the homozygous reference, heterozygous and homozygous alternative genotypes, while $m_{RA}$ and $m_{AA}$ are the counts of the matches at the heterozygous and homozygous alternative genotypes. Discordance and concordance (`disc` and `conc` in the output, respectively) are calculated conventionally, also using the number of homozygous reference matches ($m_{RR}$), which are omitted from the NRC calculation.
 
 The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.github.io/bcftools/bcftools.html#stats) followed by [post-processing in R](src/nrc.R) to pull out the relevant info.
 
