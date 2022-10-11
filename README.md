@@ -1,6 +1,7 @@
 # Non-reference concordance
 
-Please cite: Nagraj, V. P., Scholz, M., Jessa, S., Ge, J., Woerner, A. E., Huang, M., Budowle, B., & Turner, S. D. (2022). vcferr: Development, Validation, and Application of a SNP Genotyping Error Simulation Framework. _bioRxiv_ 2022.03.28.485853; doi: https://doi.org/10.1101/2022.03.28.485853.
+Nagraj, V. P., Scholz, M., Jessa, S., Ge, J., Woerner, A. E., Huang, M., Budowle, B., & Turner, S. D. (2022). vcferr: Development, validation, and application of a single nucleotide polymorphism genotyping error simulation framework. _F1000Research_, 11, 775. https://doi.org/10.12688/f1000research.122840.1
+
 
 ## Build
 
