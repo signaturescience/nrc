@@ -51,7 +51,7 @@ else
 fi
 
 # Run the command
-bcftools stats $sample $targets $vcf1 $vcf2 > /tmp/bcfstats
+bcftools stats --collapse all $sample $targets $vcf1 $vcf2 > /tmp/bcfstats
 
 # Run the R script, which writes a new file to /tmp/bcfstats.tsv, then cat that output
 Rscript /src/nrc.R
