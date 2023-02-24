@@ -37,7 +37,7 @@ rrrr	rrra	rraa	rarr	rara	raaa	aarr	aara	aaaa	xrr	xra	xaa	x	m	mm	xm	total	nrd	nrc
 21	1	2	3	17	4	5	6	13	3	7	11	21	30	51	51	72	0.412	0.588	0.292	0.708	24	24	24	0.0417	0.0833	0.125	0.167	0.208	0.25
 ```
 
-By default with no options, nrc is using bcftools to compare all samples against all other samples. If you have two VCFs each with one sample (the same sample), this will work as written. If you have two multisample VCFs, you must specify the name of the sample from both VCFs you want to compare, using the `-s` argument, which is passed to `bcftools stats -s/--sample`. E.g.:
+Both VCF files must be bgzip-compressed and indexed (either `tabix` or `bcftools index`). By default with no options, nrc is using bcftools to compare all samples against all other samples. If you have two VCFs each with one sample (the same sample), this will work as written. If you have two multisample VCFs, you must specify the name of the sample from both VCFs you want to compare, using the `-s` argument, which is passed to `bcftools stats -s/--sample`. E.g.:
 
 ```sh
 docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc -s sample1 exampledata/a.vcf.gz exampledata/b.vcf.gz
