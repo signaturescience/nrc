@@ -74,7 +74,7 @@ The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.g
 |:------|-------:|:----------|
 |rrrr   | 21 | Count of RR to RR matches          |
 |rrra   |  1 | Count of RR to RA mismatches          |
-|rraa   |  2 | Count of RA to AA mismatches          |
+|rraa   |  2 | Count of RR to AA mismatches          |
 |rarr   |  3 | Count of RA to RR mismatches          |
 |rara   | 17 | Cunt of RA to RA matches          |
 |raaa   |  4 | Count of RA to AA mismatches          |
