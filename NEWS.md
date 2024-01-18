@@ -6,7 +6,7 @@
 
 Documentation now includes clarifying note regarding the significance of order of input VCFs for downstream interpretation of specific mismatch categories (e.g., rarr). 
 
-The toolnow includes a changelog to track updates.
+The tool now includes a changelog to track updates.
 
 ## `nrc` v1.1.1 (2023-03-17)
 
