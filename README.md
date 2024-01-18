@@ -69,6 +69,8 @@ Nonreference concordance (`nrc` in the output) is calculated as $\text{NRC} = 1 
 
 The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.github.io/bcftools/bcftools.html#stats) followed by [post-processing in R](src/nrc.R) to pull out the relevant info.
 
+**NOTE**: The order in which the user inputs VCFs to `nrc` will not affect the overall concordance, non-reference concordance, discordance, or non-reference discordance metrics. However, the probabilities for switches will be oriented to the specific order in which the VCFs are specified. For example, `docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc exampledata/a.vcf.gz exampledata/b.vcf.gz` will produce different p_rraa, p_rrra, etc. compared to `docker run --rm -v $(pwd):$(pwd) -w $(pwd) nrc exampledata/b.vcf.gz exampledata/a.vcf.gz`. Users should be aware of this effect, especially when using `nrc` to evaluated batches of samples and conditions.
+ 
 
 |    Metric   |      Value |Definition |
 |:------|-------:|:----------|
@@ -76,7 +78,7 @@ The container [script](src/nrc.sh) is running [bcftools stats](http://samtools.g
 |rrra   |  1 | Count of RR to RA mismatches          |
 |rraa   |  2 | Count of RR to AA mismatches          |
 |rarr   |  3 | Count of RA to RR mismatches          |
-|rara   | 17 | Cunt of RA to RA matches          |
+|rara   | 17 | Count of RA to RA matches          |
 |raaa   |  4 | Count of RA to AA mismatches          |
 |aarr   |  5 | Count of AA to RR mismatches          |
 |aara   |  6 | Count of AA to RA mismatches          |
