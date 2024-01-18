@@ -4,9 +4,9 @@
 
 ### New features
 
-Documentation now includes clariying note regarding the significance of order of input VCFs for downstream interpretation of specific mismatch categories (e.g., rarr). 
+Documentation now includes clarifying note regarding the significance of order of input VCFs for downstream interpretation of specific mismatch categories (e.g., rarr). 
 
-Tool now includes changelog to track updates.
+The toolnow includes a changelog to track updates.
 
 ## `nrc` v1.1.1 (2023-03-17)
 
